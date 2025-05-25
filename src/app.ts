@@ -1,13 +1,4 @@
-type Movies = {
-    attributes: {
-        title: string,
-        poster: string,
-        release_date: string,
-        running_time: string,
-        trailer: string,
-
-    }
-}
+import { Movies } from "./types";
 
 //Função promete retornar uma resposta ou null
 async function getMovies(id?: string): Promise<Response | null> {
