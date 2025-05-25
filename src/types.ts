@@ -5,6 +5,6 @@ export type Movies = {
         release_date: string,
         running_time: string,
         trailer: string,
-
+        summary: string,
     }
 }

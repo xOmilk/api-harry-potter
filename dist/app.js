@@ -1,4 +1,3 @@
-"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -54,19 +53,31 @@ function searchMovie(movieId) {
 }
 function setMovie(movieId) {
     return __awaiter(this, void 0, void 0, function* () {
-        var _a;
         const movie = yield searchMovie(movieId);
         if (typeof movie === 'boolean') {
             console.log('Não foi possivel encontrar');
         }
         else {
             console.log(movie.attributes.poster);
-            let divImage = document.createElement("div");
-            divImage.classList.add("img");
+            //Criando o poster e adicionando dentro da div img
+            let divImage = document.querySelector(".img");
             let posterImg = document.createElement("img");
             posterImg.src = movie.attributes.poster;
-            divImage.appendChild(posterImg);
-            (_a = document.getElementById("main")) === null || _a === void 0 ? void 0 : _a.appendChild(divImage);
+            divImage === null || divImage === void 0 ? void 0 : divImage.appendChild(posterImg);
+            //imprimindo o conteudo do filme
+            let divResume = document.querySelector(".resume");
+            let h3Title = document.createElement("h3");
+            h3Title.innerHTML = `<p><b>${movie.attributes.title}</b></p>`;
+            let pRealeaseDate = document.createElement("p");
+            pRealeaseDate.innerHTML = `<p><b>Data de Lançamento:</b> ${movie.attributes.release_date}</p>`;
+            let pRunningTime = document.createElement("p");
+            pRunningTime.innerHTML = `<p><b>Tempo de Duração: </b>${movie.attributes.running_time}</p>`;
+            let pSummary = document.createElement("p");
+            pSummary.innerHTML = `<p>${movie.attributes.summary}</p>`;
+            divResume === null || divResume === void 0 ? void 0 : divResume.appendChild(h3Title);
+            divResume === null || divResume === void 0 ? void 0 : divResume.appendChild(pRealeaseDate);
+            divResume === null || divResume === void 0 ? void 0 : divResume.appendChild(pRunningTime);
+            divResume === null || divResume === void 0 ? void 0 : divResume.appendChild(pSummary);
         }
     });
 }
@@ -79,3 +90,4 @@ function main() {
     });
 }
 main();
+export {};
