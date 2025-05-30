@@ -1,25 +1,42 @@
+import { useEffect, useState } from "react";
+import { Container } from "../../components/Container";
 import { Heading } from "../../components/Heading";
 import { InputSearchDefault } from "../../components/InputSearchDefault";
+import { SetMovie } from "./SetMovie";
+
+import { searchMovie } from "../../script";
 
 import styles from "./styles.module.css";
-import { searchMovie } from "../../script";
-import { SetMovie } from "./SetMovie";
-import { Container } from "../../components/Container";
-
-import { useEffect, useState } from "react";
-
-import { type Movies } from "../../types";
+import type { Movie } from "../../types";
 
 export function Movies() {
-	const [movie, setMovie] = useState();
+	const [wantedMovie, setWantedMovie] = useState();
 	let id = "94055b36-c4dd-4ae5-aede-dd6b6e67e107";
 
-	console.log(movie);
-	
-	
+	const idInputElement = "idInputElement";
 
+	async function handleClick() {
+		const input = document.getElementById(idInputElement) as HTMLInputElement;
+		const inputValue = input.value;
 
+		const result = await searchMovie(input.value);
 
+		if (result) {
+			// result is either Movie or Movie[]
+			// You can further check if it's an array if needed:
+			if (Array.isArray(result)) {
+				// Handle array of movies
+
+				console.log("Todos os filmes: ", result);
+			} else {
+				// Handle single movie
+				console.log("Filme individual", result);
+			}
+		} else {
+			// result is null
+			console.log("Filme não encontrado");
+		}
+	}
 
 	return (
 		<div>
@@ -29,14 +46,16 @@ export function Movies() {
 			<Container>
 				<div className={styles.research}>
 					<InputSearchDefault
-						idInputElement="wantedMovie"
+						idInputElement={idInputElement}
 						placeholder="Digite um filme"
 						type="text"
 					/>
-					<button>Pesquisar</button>
+					<button onClick={handleClick}>Pesquisar</button>
 				</div>
 			</Container>
-			<Container>{movie && <SetMovie wantedMovie={movie} />}</Container>
+			<Container>
+				{wantedMovie && <SetMovie wantedMovie={wantedMovie} />}
+			</Container>
 		</div>
 	);
 }

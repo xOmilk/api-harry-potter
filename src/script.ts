@@ -1,110 +1,41 @@
-import { type Movies } from "./types";
+import { type Movie, type MoviesResponse, type MovieResponse } from "./types";
 
-//Função promete retornar uma resposta ou null
-export async function getMovies(id?: string): Promise<Response | null> {
+const API_URL = "https://api.potterdb.com/v1/movies";
 
-    const url = id === undefined ? `https://api.potterdb.com/v1/movies` : `https://api.potterdb.com/v1/movies/${id}`
-    id! ? console.log("O id fornecido foi", id) : console.log("Procurando todos os filmes.");
-
-
-    try {
-        let result
-
-        result = await fetch(url)
-        let data = await result.json()
-
-        if (data.data!) {
-            //ver o filme retornado
-            //console.log(data.data);
-            return data.data;
-        }
-    }
-    catch (error: any) {
-        console.log("Erro:", error.message);
-    }
-
-    return null;
+export async function fetchAllMovies(): Promise<Movie[]> {
+	const response = await fetch(API_URL);
+	if (!response.ok) throw new Error("Erro ao buscar filmes");
+	const data: MoviesResponse = await response.json();
+	return data.data;
 }
 
-async function getAllMovies(): Promise<Response> {
-    const movie = await getMovies()
-    if (movie === null) {
-        throw new Error("NO MOVIES WAS FOUND!");
-    }
-    console.log("Todos os filmes:", movie);
-    return movie;
+export async function fetchMovieById(id: string): Promise<Movie | null> {
+	const response = await fetch(`${API_URL}/${id}`);
+	if (!response.ok) return null;
+	const data: MovieResponse = await response.json();
+	return data.data ?? null;
 }
 
-export async function searchMovie(movieId: string): Promise<Response | false> {
-
-    const movie = await getMovies(movieId)
-    if (movie === null) {
-        console.log("Não foi possivel encontrar o filme procurado");
-        return false;
-    }
-    else {
-        console.log("O filme procurado foi: ", movie);
-        return movie;
-    }
-
+export async function searchMovie(
+	id?: string
+): Promise<Movie[] | Movie | null> {
+	if (id) {
+		return await fetchMovieById(id);
+	} else {
+		return await fetchAllMovies();
+	}
 }
-
-
-async function setMovie(movieId: string) {
-
-    const movie = await searchMovie(movieId) as Movies | boolean;
-
-    if (typeof movie === 'boolean') {
-        console.log('Não foi possivel encontrar');
-
-    }
-    else {
-
-        console.log(movie.attributes.poster);
-
-        //Criando o poster e adicionando dentro da div img
-        let divImage = document.querySelector(".img");
-        let posterImg = document.createElement("img");
-        posterImg.src = movie.attributes.poster;
-        divImage?.appendChild(posterImg);
-
-
-        //imprimindo o conteudo do filme
-        let divResume = document.querySelector(".resume");
-        let h3Title = document.createElement("h3");
-        h3Title.innerHTML = `<p><b>${movie.attributes.title}</b></p>`
-        let pRealeaseDate = document.createElement("p");
-        pRealeaseDate.innerHTML = `<p><b>Data de Lançamento:</b> ${movie.attributes.release_date}</p>`;
-        let pRunningTime = document.createElement("p");
-        pRunningTime.innerHTML = `<p><b>Tempo de Duração: </b>${movie.attributes.running_time}</p>`
-        let pSummary = document.createElement("p");
-        pSummary.innerHTML = `<p>${movie.attributes.summary}</p>`;
-
-        divResume?.appendChild(h3Title);
-        divResume?.appendChild(pRealeaseDate);
-        divResume?.appendChild(pRunningTime);
-        divResume?.appendChild(pSummary);
-
-    }
-
-}
-
-
 
 async function main() {
+	// Buscar todos os filmes
+	const allMovies = await fetchAllMovies();
+	console.log("Todos os filmes:", allMovies);
 
-    let id = "94055b36-c4dd-4ae5-aede-dd6b6e67e107";
-
-    await getAllMovies();
-    console.log("------------------------");
-
-    await setMovie(id);
+	// Buscar um filme específico
+	const movie = await fetchMovieById("94055b36-c4dd-4ae5-aede-dd6b6e67e107");
+	if (movie) {
+		console.log("Filme encontrado:", movie);
+	} else {
+		console.log("Filme não encontrado");
+	}
 }
-main();
-
-
-
-
-
-
-
