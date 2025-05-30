@@ -21,7 +21,7 @@ export function Movies() {
 		) as HTMLInputElement;
 		const inputValue = input.value;
 
-		const result = await searchMovie(input.value);
+		const result = await searchMovie(inputValue);
 
 		if (result) {
 			if (Array.isArray(result)) {
@@ -32,11 +32,7 @@ export function Movies() {
 				// Verifica se é um filme unico
 				console.log("Filme individual", result);
 
-				setWantedMovie((result) => {
-					console.log("Estou dentro do setWantedMovie");
-
-					return result;
-				});
+				setWantedMovie(result);
 			}
 		} else {
 			// result is null
