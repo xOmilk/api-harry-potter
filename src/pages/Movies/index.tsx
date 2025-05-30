@@ -16,21 +16,27 @@ export function Movies() {
 	const idInputElement = "idInputElement";
 
 	async function handleClick() {
-		const input = document.getElementById(idInputElement) as HTMLInputElement;
+		const input = document.getElementById(
+			idInputElement
+		) as HTMLInputElement;
 		const inputValue = input.value;
 
 		const result = await searchMovie(input.value);
 
 		if (result) {
-			// result is either Movie or Movie[]
-			// You can further check if it's an array if needed:
 			if (Array.isArray(result)) {
-				// Handle array of movies
+				// Verifica se veio todos os filmes
 
 				console.log("Todos os filmes: ", result);
 			} else {
-				// Handle single movie
+				// Verifica se é um filme unico
 				console.log("Filme individual", result);
+
+				setWantedMovie((result) => {
+					console.log("Estou dentro do setWantedMovie");
+
+					return result;
+				});
 			}
 		} else {
 			// result is null
