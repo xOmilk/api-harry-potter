@@ -1,0 +1,57 @@
+.research {
+	margin: auto auto;
+	margin-top: 30px;
+	margin-bottom: 30px;
+	color: black !important;
+	display: inline-block;
+}
+.research input {
+	width: 800px;
+	height: 70px;
+	border-radius: 12px;
+	top: 500px;
+	padding: 20px;
+	text-indent: 20px;
+	font-size: 22px;
+}
+.research button {
+	border-radius: 12px;
+	padding: 20px;
+	font-size: 20px;
+	height: 70px;
+}
+
+.content {
+	height: 450px;
+}
+div.img {
+	height: inherit;
+	float: left;
+	position: relative;
+	top: inherit;
+	float: left;
+	overflow: hidden;
+}
+div.img img {
+	width: 300px;
+	height: 450px;
+}
+.content .resume {
+	height: inherit;
+	display: flex;
+	flex-flow: column wrap;
+	justify-content: center;
+	align-items: start;
+}
+.content .resume * {
+	color: white;
+}
+.content .resume h3 {
+	font-size: 32px;
+	margin-bottom: 25px;
+}
+.content .resume p {
+	margin: 0px;
+	margin-bottom: 10px;
+	font-size: 18px;
+}

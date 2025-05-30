@@ -1,0 +1,30 @@
+* {
+	box-sizing: border-box;
+}
+
+body {
+	color: var(--text-color-default);
+	font-family: garamond;
+	height: 100dvh;
+	display: flex;
+	flex-flow: column;
+	margin: 0;
+	padding: 0;
+	/* background-color: var(--dark-grey); */
+
+	/* Cinza Escuro */
+	/* background: linear-gradient(135deg, #1E1E1E, #2B2B2B, #3C3C3C); */
+
+	/* Dourado */
+	/* background: linear-gradient(135deg, #1e1e1e, #2f2b1c, #b08d57); */
+	/* Cores Azul */
+	/* background: linear-gradient(135deg, #1E1E1E, #233237, #4A5A6A); */
+	/* Toque de nevoa */
+	/* background: linear-gradient(135deg, #1E1E1E, #2A2A2A, #404040); */
+	background: linear-gradient(135deg, #1e1e1e, #3a2f25, #6e4f1c);
+	
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	background-size: cover;
+	overflow: hidden;
+}

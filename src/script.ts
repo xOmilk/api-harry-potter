@@ -1,7 +1,7 @@
-import { Movies } from "./types";
+import { type Movies } from "./types";
 
 //Função promete retornar uma resposta ou null
-async function getMovies(id?: string): Promise<Response | null> {
+export async function getMovies(id?: string): Promise<Response | null> {
 
     const url = id === undefined ? `https://api.potterdb.com/v1/movies` : `https://api.potterdb.com/v1/movies/${id}`
     id! ? console.log("O id fornecido foi", id) : console.log("Procurando todos os filmes.");
@@ -35,7 +35,7 @@ async function getAllMovies(): Promise<Response> {
     return movie;
 }
 
-async function searchMovie(movieId: string): Promise<Response | false> {
+export async function searchMovie(movieId: string): Promise<Response | false> {
 
     const movie = await getMovies(movieId)
     if (movie === null) {

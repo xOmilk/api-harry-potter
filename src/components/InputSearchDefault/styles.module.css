@@ -1,0 +1,22 @@
+.research {
+	margin: auto auto;
+	margin-top: 30px;
+	margin-bottom: 30px;
+	color: black !important;
+	display: inline-block;
+}
+.research input {
+	width: 800px;
+	height: 70px;
+	border-radius: 12px;
+	top: 500px;
+	padding: 20px;
+	text-indent: 20px;
+	font-size: 22px;
+}
+.research button {
+	border-radius: 12px;
+	padding: 20px;
+	font-size: 20px;
+	height: 70px;
+}
