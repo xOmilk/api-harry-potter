@@ -11,12 +11,11 @@ import type { Movie } from "../../types";
 import { SetAllMovies } from "./SetAllMovies";
 
 export function Movies() {
-	const [wantedMovie, setWantedMovie] = useState();
-
-	const [allMoviesData, setAllMoviesData] = useState([]);
+	const [wantedMovie, setWantedMovie] = useState<Movie | null>(null);
+	const [allMoviesData, setAllMoviesData] = useState<Movie[]>([]);
 	const [showAll, setShowAll] = useState(false);
 
-	const [dontShow, setDontShow] = useState(false)
+	const [dontShow, setDontShow] = useState(false);
 
 	let id = "94055b36-c4dd-4ae5-aede-dd6b6e67e107";
 
@@ -31,25 +30,30 @@ export function Movies() {
 		const result = await searchMovie(inputValue);
 
 		if (result) {
+			setDontShow(false);
 			if (Array.isArray(result)) {
-				// Verifica se veio todos os filmes
+				// Seleciona todos os filmes
 
 				setAllMoviesData(result);
 				setShowAll(true);
 				setWantedMovie(null);
-
 			} else {
-				// Verifica se é um filme unico
+				// Somente um filme
 				console.log("Filme individual", result);
 
 				setWantedMovie(result);
 				setShowAll(false);
-				setAllMoviesData(null)
+				setAllMoviesData(null);
 			}
 		} else {
 			setDontShow(true);
 			console.log("Filme não encontrado");
 		}
+	}
+
+	function handleSelectMovie(movie: Movie) {
+		setWantedMovie(movie);
+		setShowAll(false); // Esconde a lista ao selecionar um filme
 	}
 
 	return (
@@ -61,16 +65,26 @@ export function Movies() {
 				<div className={styles.research}>
 					<InputSearchDefault
 						idInputElement={idInputElement}
-						placeholder="Digite um filme"
+						placeholder="Informe o id do filme"
 						type="text"
 					/>
 					<button onClick={handleClick}>Pesquisar</button>
 				</div>
 			</Container>
 			<Container>
-				{wantedMovie && <SetMovie wantedMovie={wantedMovie} />}
-				{showAll && <SetAllMovies allMovies={allMoviesData}/>}
-
+				{dontShow ? (
+					<>
+					<p>Você não digitou nenhum filme válido</p>
+					<p>Você pode ver todos os filmes ao deixar o campo vazio</p>
+					</>
+				) : wantedMovie ? (
+					<SetMovie wantedMovie={wantedMovie} />
+				) : showAll ? (
+					<SetAllMovies
+						allMovies={allMoviesData}
+						onSelectMovie={handleSelectMovie}
+					/>
+				) : null}
 			</Container>
 		</div>
 	);
