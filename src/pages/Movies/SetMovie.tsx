@@ -7,8 +7,11 @@ type SetMovieProps = {
 };
 
 function getYoutubeEmbed(url: string) {
-	const idMatch = url.match(/(?:v=|\/embed\/|\.be\/)([a-zA-Z0-9_-]{11})/);
-	return idMatch ? `https://www.youtube.com/embed/${idMatch[1]}` : "";
+    // Remove possíveis barras no final
+    const cleanUrl = url.trim().replace(/\/+$/, "");
+    // Pega os 11 últimos caracteres
+    const videoId = cleanUrl.slice(-11);
+    return `https://www.youtube.com/embed/${videoId}`;
 }
 
 export function SetMovie({ wantedMovie }: SetMovieProps) {
