@@ -6,6 +6,11 @@ type SetMovieProps = {
 	wantedMovie: Movie;
 };
 
+function getYoutubeEmbed(url: string) {
+	const idMatch = url.match(/(?:v=|\/embed\/|\.be\/)([a-zA-Z0-9_-]{11})/);
+	return idMatch ? `https://www.youtube.com/embed/${idMatch[1]}` : "";
+}
+
 export function SetMovie({ wantedMovie }: SetMovieProps) {
 	return (
 		<section className={syles.content}>
@@ -21,7 +26,7 @@ export function SetMovie({ wantedMovie }: SetMovieProps) {
 				<div className={syles.videoWrapper}>
 					<iframe
 						allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-						src={wantedMovie.attributes.trailer}
+						src={getYoutubeEmbed(wantedMovie.attributes.trailer)}
 					></iframe>
 				</div>
 			</div>
