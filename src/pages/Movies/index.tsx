@@ -36,7 +36,7 @@ export function Movies() {
 
 				setAllMoviesData(result);
 				setShowAll(true);
-
+				setWantedMovie(null);
 
 			} else {
 				// Verifica se é um filme unico
@@ -44,6 +44,7 @@ export function Movies() {
 
 				setWantedMovie(result);
 				setShowAll(false);
+				setAllMoviesData(null)
 			}
 		} else {
 			setDontShow(true);
