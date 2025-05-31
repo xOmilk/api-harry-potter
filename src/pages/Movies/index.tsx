@@ -8,9 +8,16 @@ import { searchMovie } from "../../script";
 
 import styles from "./styles.module.css";
 import type { Movie } from "../../types";
+import { SetAllMovies } from "./SetAllMovies";
 
 export function Movies() {
 	const [wantedMovie, setWantedMovie] = useState();
+
+	const [allMoviesData, setAllMoviesData] = useState([]);
+	const [showAll, setShowAll] = useState(false);
+
+	const [dontShow, setDontShow] = useState(false)
+
 	let id = "94055b36-c4dd-4ae5-aede-dd6b6e67e107";
 
 	const idInputElement = "idInputElement";
@@ -27,15 +34,19 @@ export function Movies() {
 			if (Array.isArray(result)) {
 				// Verifica se veio todos os filmes
 
-				console.log("Todos os filmes: ", result);
+				setAllMoviesData(result);
+				setShowAll(true);
+
+
 			} else {
 				// Verifica se é um filme unico
 				console.log("Filme individual", result);
 
 				setWantedMovie(result);
+				setShowAll(false);
 			}
 		} else {
-			// result is null
+			setDontShow(true);
 			console.log("Filme não encontrado");
 		}
 	}
@@ -57,6 +68,8 @@ export function Movies() {
 			</Container>
 			<Container>
 				{wantedMovie && <SetMovie wantedMovie={wantedMovie} />}
+				{showAll && <SetAllMovies allMovies={allMoviesData}/>}
+
 			</Container>
 		</div>
 	);
