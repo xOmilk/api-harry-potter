@@ -1,7 +1,7 @@
-:root{
+:root {
+	--dark-grey: #1e1e1e;
 
-    --dark-grey:#1E1E1E;
-
-    --text-color-default:#fff;
-
+	--text-color-default: #fff;
+	--golden: #ffe066;
+	--background-item: rgba(30, 30, 30, 0.85);;
 }
