@@ -1,6 +1,11 @@
-.container{
-    display: flex;
-    flex-flow: column;
-    align-items: center;
-    justify-content: center;
+.container {
+	border-radius: 1rem;
+	margin: auto auto;
+	width: 80%;
+	padding: 2.4rem;
+	background-color: var(--background-item);
+	display: flex;
+	flex-flow: column;
+	align-items: center;
+	justify-content: center;
 }

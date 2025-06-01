@@ -1,8 +1,7 @@
-import { Container } from "../../components/Container";
-
+import styles from "./styles.module.css";
 export function Characters() {
 	return (
-		<Container>
+		<div className={styles.container}>
 			<h2>Personagens</h2>
 
 			<p>
@@ -23,6 +22,6 @@ export function Characters() {
 				reprehenderit rem ad assumenda, modi esse cupiditate ab
 				blanditiis labore quam, facere voluptatem! Accusantium!
 			</p>
-		</Container>
+		</div>
 	);
 }

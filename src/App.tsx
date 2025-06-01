@@ -8,6 +8,7 @@ import "./styles/globals.css";
 import { Spells } from "./pages/Spells";
 import { Characters } from "./pages/Characters";
 import { Navbar } from "./components/Navbar";
+import { Footer } from "./components/Footer";
 
 export function App() {
 	return (
@@ -19,6 +20,8 @@ export function App() {
 				<Route path="/characters" element={<Characters />} />
 				<Route path="/movies" element={<Movies />} />
 			</Routes>
+
+			<Footer />
 		</BrowserRouter>
 	);
 }

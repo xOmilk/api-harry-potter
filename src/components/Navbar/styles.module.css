@@ -1,9 +1,8 @@
 .list {
-    height: 70px;
+	height: 70px;
 	background: var(--background-item);
 	width: 100%;
 	margin: auto auto;
-	margin-top: 1rem;
 	margin-bottom: 3rem;
 	display: flex;
 	flex-flow: row;
@@ -13,11 +12,24 @@
 	gap: 10rem;
 }
 
-.item * {
+.item a {
 	padding: 0.5rem 1rem;
-    border-radius: 1rem;
+	border-radius: 1rem;
 	background-color: var(--golden);
 	color: black;
-    font-weight: bold;
+	font-weight: bold;
 	text-decoration: none;
+	transition: all 0.2s ease-in-out;
+
+	&:current {
+		background-color: aqua;
+	}
+
+	&:hover {
+		opacity: 70%;
+	}
+	&:active {
+		background-color: black;
+		color: white;
+	}
 }

@@ -1,0 +1,7 @@
+.content {
+    padding: 2.4rem;
+    border-radius: 1rem;
+    margin: auto auto;
+	width: 80%;
+	background: var(--background-item);
+}
