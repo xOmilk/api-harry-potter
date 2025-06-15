@@ -1,27 +1,41 @@
-import styles from "./styles.module.css";
-export function Characters() {
-	return (
-		<div className={styles.container}>
-			<h2>Personagens</h2>
+import { useState } from "react";
+import { InputSearchDefault } from "../../components/InputSearchDefault";
 
-			<p>
-				Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-				Reprehenderit eum sequi illum dicta, veritatis qui optio!
-				Distinctio quos sed laborum corrupti expedita officiis, debitis
-				quam incidunt quas quis alias voluptates!
-			</p>
-			<p>
-				Officiis dolor, laboriosam quia numquam totam eligendi culpa.
-				Deserunt natus ex optio aspernatur voluptatibus earum ipsam
-				dolor tenetur harum itaque pariatur architecto voluptate dolore
-				aperiam, laboriosam error at repellendus autem.
-			</p>
-			<p>
-				Deserunt officiis dolorem odio possimus magni sit placeat nihil
-				culpa animi eveniet numquam asperiores ea inventore
-				reprehenderit rem ad assumenda, modi esse cupiditate ab
-				blanditiis labore quam, facere voluptatem! Accusantium!
-			</p>
-		</div>
+import styles from "./styles.module.css";
+import type { CharacterType } from "./code/CharacterType";
+import { SetAllCharacters } from "./SetAllCharacters";
+import { searchEspecificCharacter } from "./code/characters";
+import { Container } from "../../components/Container";
+import { Heading } from "../../components/Heading";
+
+export function Characters() {
+	const [value, setValue] = useState("");
+
+	const [character, setCharacter] = useState<CharacterType[]>();
+
+	async function onChangeInput(e: React.ChangeEvent<HTMLInputElement>) {
+		const text = e.target.value;
+		setValue(text);
+		const movie = await searchEspecificCharacter(value);
+		setCharacter(movie);
+	}
+
+	return (
+		<Container>
+			<Heading>
+				<h1>Harry Potter Wiki</h1>
+			</Heading>
+
+			<InputSearchDefault
+				placeholder="Digite um personagem"
+				idInputElement="kk"
+				onChange={onChangeInput}
+				value={value}
+			/>
+
+			{character && Array.isArray(character) && (
+				<SetAllCharacters Characters={character} />
+			)}
+		</Container>
 	);
 }
