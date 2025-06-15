@@ -13,10 +13,39 @@
 	padding: 20px;
 	text-indent: 20px;
 	font-size: 22px;
+	border: 2px solid #ffe066;
+	background: #23211a;
+	color: #ffe066;
+	box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
+	transition: border-color 0.3s, box-shadow 0.3s, background 0.3s;
+	outline: none;
+	margin-right: 10px;
 }
+.research input:focus {
+	border-color: #ffd43b;
+	background: #2d2613;
+	box-shadow: 0 0 0 4px rgba(255, 224, 102, 0.2);
+}
+
 .research button {
 	border-radius: 12px;
 	padding: 20px;
 	font-size: 20px;
 	height: 70px;
+	background: linear-gradient(90deg, #ffe066 60%, #ffd43b 100%);
+	color: #2d2613;
+	border: none;
+	box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+	transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+	font-weight: bold;
+	letter-spacing: 1px;
+
+	transition: all 0.3s;
+}
+
+.research button:hover {
+	cursor: pointer;
+	transform: scale(1.05);
+	background: linear-gradient(90deg, #ffd43b 60%, #ffe066 100%);
+	box-shadow: 0 4px 24px rgba(0, 0, 0, 0.18);
 }

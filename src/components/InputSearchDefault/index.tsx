@@ -10,13 +10,12 @@ export function InputSearchDefault({
 	...anyParam
 }: InputDefaultProps) {
 	return (
-		<>
+		<div className={styles.research}>
 			<input
 				id={idInputElement}
-				className={styles.input}
 				type={type}
 				{...anyParam}
 			/>
-		</>
+		</div>
 	);
 }
