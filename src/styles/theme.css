@@ -4,4 +4,5 @@
 	--text-color-default: #fff;
 	--golden: #ffe066;
 	--background-item: rgba(30, 30, 30, 0.85);
+	--box-shadow: 0 2px 16px rgba(0, 0, 0, 0.2);
 }

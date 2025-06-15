@@ -1,7 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { InputSearchDefault } from "../../components/InputSearchDefault";
 
-import styles from "./styles.module.css";
 import type { CharacterType } from "./code/CharacterType";
 import { SetAllCharacters } from "./SetAllCharacters";
 import { searchEspecificCharacter } from "./code/characters";
@@ -9,16 +8,41 @@ import { Container } from "../../components/Container";
 import { Heading } from "../../components/Heading";
 
 export function Characters() {
-	const [value, setValue] = useState("");
+	const [searchValue, setSearchValue] = useState("");
 
-	const [character, setCharacter] = useState<CharacterType[]>();
+	const [characters, setCharacters] = useState<CharacterType[]>();
 
 	async function onChangeInput(e: React.ChangeEvent<HTMLInputElement>) {
 		const text = e.target.value;
-		setValue(text);
-		const movie = await searchEspecificCharacter(value);
-		setCharacter(movie);
+		setSearchValue(text);
+		const movie = await searchEspecificCharacter(searchValue);
+		setCharacters(movie);
 	}
+
+	useEffect(() => {
+		async function loadCharacters() {
+			//Carregar todos os personagens em caso nao digitar nada
+			if (searchValue.trim() === "") {
+				setCharacters(await searchEspecificCharacter(""));
+				return;
+			}
+
+			const result = await searchEspecificCharacter(searchValue);
+
+			if (result) {
+				setCharacters(Array.isArray(result) ? result : [result]);
+			} else {
+				setCharacters([]);
+			}
+		}
+
+		const delayAfterStopTyping = 500;
+		const timerId = setTimeout(() => {
+			loadCharacters();
+		}, delayAfterStopTyping);
+
+		return () => clearTimeout(timerId);
+	}, [searchValue]);
 
 	return (
 		<Container>
@@ -28,13 +52,13 @@ export function Characters() {
 
 			<InputSearchDefault
 				placeholder="Digite um personagem"
-				idInputElement="kk"
+				idInputElement="inputCharacter"
 				onChange={onChangeInput}
-				value={value}
+				value={searchValue}
 			/>
 
-			{character && Array.isArray(character) && (
-				<SetAllCharacters Characters={character} />
+			{characters && Array.isArray(characters) && (
+				<SetAllCharacters Characters={characters} />
 			)}
 		</Container>
 	);

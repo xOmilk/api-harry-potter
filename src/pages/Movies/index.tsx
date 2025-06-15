@@ -9,6 +9,7 @@ import { searchMovie } from "../../script";
 import styles from "./styles.module.css";
 import type { Movie } from "../../types";
 import { SetAllMovies } from "./SetAllMovies";
+import { BoxListItens } from "../../components/BoxListItens";
 
 export function Movies() {
 	const [wantedMovie, setWantedMovie] = useState<Movie | null>(null);
@@ -74,8 +75,11 @@ export function Movies() {
 			<Container>
 				{dontShow ? (
 					<>
-					<p>Você não digitou nenhum filme válido</p>
-					<p>Você pode ver todos os filmes ao deixar o campo vazio</p>
+						<p>Você não digitou nenhum filme válido</p>
+						<p>
+							Você pode ver todos os filmes ao deixar o campo
+							vazio
+						</p>
 					</>
 				) : wantedMovie ? (
 					<SetMovie wantedMovie={wantedMovie} />
@@ -84,7 +88,15 @@ export function Movies() {
 						allMovies={allMoviesData}
 						onSelectMovie={handleSelectMovie}
 					/>
-				) : null}
+				) : (
+					<BoxListItens>
+						<p>Nesta seção você pode ver os filmes feitos</p>
+						<p>
+							Em caso de não digitar nada você ver a lista de
+							todos os filmes
+						</p>
+					</BoxListItens>
+				)}
 			</Container>
 		</div>
 	);

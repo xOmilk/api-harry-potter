@@ -2,18 +2,14 @@
 	margin: auto auto;
 	margin-top: 2rem;
 	width: 100%;
+	max-width: 800px;
 	display: flex;
 	flex-flow: column;
-	align-items: center;
 	justify-content: center;
-
-	background: rgba(30, 30, 30, 0.85);
+	align-items: center;
+	gap: 1rem;
 	padding: 32px 32px 24px 32px;
 	border-radius: 16px;
-	max-width: 800px;
-	box-shadow: 0 2px 16px rgba(0, 0, 0, 0.2);
-
-	gap: 1.5rem;
 
 	& h3 {
 		font-weight: bold;
@@ -21,7 +17,9 @@
 }
 
 .character {
-	width: 70%;
+	margin: auto auto;
+	margin: 0 3rem;
+	width: 100%;
 	display: flex;
 	flex-flow: row;
 	align-items: left;
