@@ -44,7 +44,7 @@ export function Movies() {
 
 				setWantedMovie(result);
 				setShowAll(false);
-				setAllMoviesData(null);
+				setAllMoviesData([]);
 			}
 		} else {
 			setDontShow(true);

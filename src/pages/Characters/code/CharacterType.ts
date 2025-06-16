@@ -3,4 +3,7 @@ export type CharacterType = {
 	nickname: string;
 	hogwartsHouse: string;
 	image: string;
+	interpretedBy: string;
+	birthdate: string;
+	index: number;
 };

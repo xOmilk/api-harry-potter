@@ -6,11 +6,18 @@ import { SetAllCharacters } from "./SetAllCharacters";
 import { searchEspecificCharacter } from "./code/characters";
 import { Container } from "../../components/Container";
 import { Heading } from "../../components/Heading";
+import { SetEspecificCharacter } from "./SetEspecifCharacter";
 
 export function Characters() {
 	const [searchValue, setSearchValue] = useState("");
 
 	const [characters, setCharacters] = useState<CharacterType[]>();
+
+	const [choosedCharacter, setChoosedCharacter] =
+		useState<CharacterType | null>(null);
+
+	const [showOnlyOneCharacter, setShowOnlyOneCharacter] =
+		useState<boolean>(false);
 
 	async function onChangeInput(e: React.ChangeEvent<HTMLInputElement>) {
 		const text = e.target.value;
@@ -19,12 +26,20 @@ export function Characters() {
 		setCharacters(movie);
 	}
 
+	function fnChooseCharacter(character: CharacterType) {
+		setChoosedCharacter(character);
+	}
+
 	useEffect(() => {
 		async function loadCharacters() {
 			//Carregar todos os personagens em caso nao digitar nada
 			if (searchValue.trim() === "") {
 				setCharacters(await searchEspecificCharacter(""));
 				return;
+			}
+
+			if (searchValue.length > 0 || searchValue === "") {
+				setShowOnlyOneCharacter(false);
 			}
 
 			const result = await searchEspecificCharacter(searchValue);
@@ -57,8 +72,18 @@ export function Characters() {
 				value={searchValue}
 			/>
 
-			{characters && Array.isArray(characters) && (
-				<SetAllCharacters Characters={characters} />
+			{!showOnlyOneCharacter &&
+				characters &&
+				Array.isArray(characters) && (
+					<SetAllCharacters
+						Characters={characters}
+						setChoosedCharacter={fnChooseCharacter}
+						setShowOnlyOneCharacter={setShowOnlyOneCharacter}
+					/>
+				)}
+
+			{showOnlyOneCharacter && choosedCharacter !== null && (
+				<SetEspecificCharacter character={choosedCharacter} />
 			)}
 		</Container>
 	);
