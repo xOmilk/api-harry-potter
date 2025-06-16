@@ -21,12 +21,10 @@
 	text-decoration: none;
 	transition: all 0.2s ease-in-out;
 
-	&:current {
-		background-color: aqua;
-	}
-
 	&:hover {
 		opacity: 70%;
+		padding: 1rem 1rem;
+
 	}
 	&:active {
 		background-color: black;
