@@ -1,4 +1,4 @@
-import type { Movie } from "../../types";
+import type { Movie } from "./code/types";
 
 import styles from "./styles2.module.css";
 

@@ -1,4 +1,4 @@
-import { type Movie } from "../../types";
+import { type Movie } from "./code/types";
 
 import syles from "./styles.module.css";
 

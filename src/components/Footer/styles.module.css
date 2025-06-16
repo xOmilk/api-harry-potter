@@ -3,10 +3,12 @@
 	bottom: 0px;
 	width: 100%;
 	margin: auto auto;
+	margin-top: 2rem;
 	display: flex;
 	flex-flow: column;
 	align-items: center;
 	justify-content: center;
+	background: var(--background-item);
 
 	& a {
 		text-decoration: none;

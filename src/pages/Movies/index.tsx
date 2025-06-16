@@ -4,10 +4,10 @@ import { Heading } from "../../components/Heading";
 import { InputSearchDefault } from "../../components/InputSearchDefault";
 import { SetMovie } from "./SetMovie";
 
-import { searchMovie } from "../../script";
+import { searchMovie } from "./code/script";
 
 import styles from "./styles.module.css";
-import type { Movie } from "../../types";
+import type { Movie } from "./code/types";
 import { SetAllMovies } from "./SetAllMovies";
 import { BoxListItens } from "../../components/BoxListItens";
 
