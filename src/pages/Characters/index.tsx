@@ -61,10 +61,6 @@ export function Characters() {
 
 	return (
 		<Container>
-			<Heading>
-				<h1>Harry Potter Wiki</h1>
-			</Heading>
-
 			<InputSearchDefault
 				placeholder="Digite um personagem"
 				idInputElement="inputCharacter"

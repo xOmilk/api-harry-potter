@@ -2,6 +2,7 @@
     padding: 2.4rem;
     border-radius: 1rem;
     margin: auto auto;
+    margin-top: 2rem;
 	width: 80%;
 	background: var(--background-item);
 }

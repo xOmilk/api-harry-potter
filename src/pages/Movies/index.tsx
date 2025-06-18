@@ -59,9 +59,6 @@ export function Movies() {
 
 	return (
 		<div>
-			<Heading>
-				<h1>Harry Potter Wiki</h1>
-			</Heading>
 			<Container>
 				<div className={styles.research}>
 					<InputSearchDefault
