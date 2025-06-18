@@ -1,8 +1,24 @@
 .content {
-    padding: 2.4rem;
-    border-radius: 1rem;
-    margin: auto auto;
-    margin-top: 2rem;
+	padding: 2.4rem;
+	border-radius: 1rem;
+	margin: auto auto;
+	margin-top: 2rem;
 	width: 80%;
 	background: var(--background-item);
+}
+
+p,
+span {
+	letter-spacing: normal !important;
+	font-size: 18px;
+}
+
+ul li {
+	letter-spacing: 1.3px;
+	font-weight: bolder;
+	font-size: 17px !important;
+
+	span {
+		font-weight: normal;
+	}
 }
