@@ -11,8 +11,9 @@
 	background: var(--background-item);
 
 	& a {
+		letter-spacing: 1.2px;
 		text-decoration: none;
-		color: white;
+		color: var(--golden);
 
 		&:hover {
 			text-decoration: underline;

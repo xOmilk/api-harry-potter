@@ -17,14 +17,14 @@
 	border-radius: 1rem;
 	background-color: var(--golden);
 	color: black;
-	font-weight: bold;
+	font-weight: bolder;
+	font-size: larger;
 	text-decoration: none;
 	transition: all 0.2s ease-in-out;
 
 	&:hover {
 		opacity: 70%;
 		padding: 1rem 1rem;
-
 	}
 	&:active {
 		background-color: black;

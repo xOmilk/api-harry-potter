@@ -5,6 +5,18 @@
 	margin-top: 2rem;
 	width: 80%;
 	background: var(--background-item);
+	display: flex;
+	flex-flow: column wrap;
+	gap: 0.9rem;
+}
+
+.top {
+	letter-spacing: 1.5px;
+
+	h2 {
+		font-size: 25px;
+		word-spacing: 1.5px;
+	}
 }
 
 p,
@@ -20,5 +32,14 @@ ul li {
 
 	span {
 		font-weight: normal;
+	}
+}
+
+a {
+	color: var(--golden);
+	text-decoration: none;
+
+	&:hover {
+		text-decoration: underline;
 	}
 }

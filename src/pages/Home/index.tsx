@@ -5,11 +5,13 @@ export function Home() {
 	return (
 		<Container>
 			<div className={styles.content}>
-				<h2>Seja bem vindo a Harry Potter Wiki</h2>
-				<h3>
-					Este é um site desenvolvido sem fins lucrativos a fim de
-					aprendizado
-				</h3>
+				<div className={styles.top}>
+					<h2>Seja bem vindo a Harry Potter Wiki</h2>
+					<h3>
+						Este é um site desenvolvido sem fins lucrativos a fim de
+						aprendizado
+					</h3>
+				</div>
 				<p>
 					O objetivo desse site é a pratica da biblioteca do React em
 					conjunto com as suas funcionalidades. Funcionalidades e

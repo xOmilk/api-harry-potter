@@ -7,13 +7,15 @@ import { Heading } from "../../components/Heading";
 import "../../styles/theme.css";
 import "../../styles/globals.css";
 
+import styles from "./styles.module.css";
+
 export function DefaultLayout() {
 	return (
 		<div className="app-container">
 			<Navbar />
 			<main className="main-content">
 				<Heading>
-					<h1>Harry Potter Wiki</h1>
+					<h1 className={styles.title}>Harry Potter Wiki</h1>
 				</Heading>
 
 				<Outlet />
