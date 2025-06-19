@@ -15,6 +15,9 @@ export function Navbar() {
 				<li className={styles.item}>
 					<Link to="/characters">Personagens</Link>
 				</li>
+				<li className={styles.item}>
+					<Link to="/spells">Feitiços</Link>
+				</li>
 			</ul>
 		</nav>
 	);
