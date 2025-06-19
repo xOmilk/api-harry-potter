@@ -16,63 +16,62 @@ export function Home() {
 					O objetivo desse site é a pratica da biblioteca do React em
 					conjunto com as suas funcionalidades. Funcionalidades e
 					particularidades essas como:
-					<ul>
-						<li>SPAs</li>
-						<li>Components & Props</li>
-						<li>react-router-dom</li>
-						<li>useState</li>
-						<li>useContext</li>
-						<li>useEffect</li>
-					</ul>
 				</p>
+				<ul>
+					<li>SPAs</li>
+					<li>Components & Props</li>
+					<li>react-router-dom</li>
+					<li>useState</li>
+					<li>useContext</li>
+					<li>useEffect</li>
+				</ul>
 
 				<p>
 					A utilização de elementos e funcionalidades do JavaScript e
 					TypeScript puro como por exemplo:
-					<ul>
-						<li>
-							fetch{" "}
-							<span>
-								(Para recuperação de dados via APIs distintas)
-							</span>{" "}
-						</li>
-						<li>
-							Promise, async, await{" "}
-							<span>
-								(Trabalhar com dados de forma assíncrona)
-							</span>
-						</li>
-						<li>
-							Tipagem typescript{" "}
-							<span>
-								(A fim de evitar erros no momento de
-								desenvolvimento e seguir boas praticas)
-							</span>
-						</li>
-					</ul>
 				</p>
+				<ul>
+					<li>
+						fetch{" "}
+						<span>
+							(Para recuperação de dados via APIs distintas)
+						</span>{" "}
+					</li>
+					<li>
+						Promise, async, await{" "}
+						<span>(Trabalhar com dados de forma assíncrona)</span>
+					</li>
+					<li>
+						Tipagem typescript{" "}
+						<span>
+							(A fim de evitar erros no momento de desenvolvimento
+							e seguir boas praticas)
+						</span>
+					</li>
+				</ul>
 
 				<p>
 					Foram utilizadas algumas APIs para construção do conteudo
 					desse site dentre elas:
-					<ul>
-						<li>
-							<a href="https://potterdb.com/" target="_blank">
-								Potter DB
-							</a>{" "}
-							<span>(Filmes)</span>
-						</li>
-						<li>
-							<a
-								href="https://github.com/fedeperin/potterapi"
-								target="_blank"
-							>
-								Potter API
-							</a>{" "}
-							<span>(Personagens)</span>
-						</li>
-					</ul>
 				</p>
+				<ul>
+					<li>
+						<a href="https://potterdb.com/" target="_blank">
+							Potter DB
+						</a>{" "}
+						<span>(Filmes)</span>
+					</li>
+					<li>
+						<a
+							href="https://github.com/fedeperin/potterapi"
+							target="_blank"
+						>
+							Potter API
+						</a>{" "}
+						<span>(Personagens)</span>
+					</li>
+				</ul>
+
 				<p>
 					A documentação desse site é aberta e pode ser acessada por{" "}
 					<a
