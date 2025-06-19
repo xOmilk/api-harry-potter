@@ -28,7 +28,7 @@ export function SetAllCharacters({
 							}}
 						>
 							<img src={character.image} alt="" />
-							<div>
+							<div className={styles.info}>
 								<h3>{character.fullName}</h3>
 								<p>
 									Apelido do personagem:{" "}
