@@ -1,0 +1,19 @@
+.containerList {
+	display: flex;
+	flex-flow: column;
+	gap: 2rem;
+}
+
+.listItem {
+	display: flex;
+	flex-flow: row;
+	gap: 1.2rem;
+	border: 2px solid transparent;
+	transition: all 0.3s;
+
+	&:hover {
+		transform: scale(1.05);
+		cursor: pointer;
+		border-color: var(--golden);
+	}
+}

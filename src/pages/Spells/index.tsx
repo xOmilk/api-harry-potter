@@ -4,6 +4,9 @@ import { InputSearchDefault } from "../../components/InputSearchDefault";
 import type { SpellType } from "./code/SpellType";
 import { getSpells } from "./code/apiRequest";
 
+import styles from "./style.module.css";
+import { BoxListItens } from "../../components/BoxListItens";
+
 export function Spells() {
 	const [valueText, setValueText] = useState("");
 
@@ -19,13 +22,13 @@ export function Spells() {
 
 	const filteredSpells = useMemo(() => {
 		return allSpells.filter((spell) =>
-			spell.fullName.toLowerCase().includes(valueText.toLowerCase())
+			spell.spell.toLowerCase().includes(valueText.toLowerCase())
 		);
 	}, [allSpells, valueText]);
 
 	//Forma que o filtro recaulcula em toda renderização
 	/* const filteredSpells = allSpells.filter((spell) =>
-		spell.fullName.toLowerCase().includes(valueText.toLowerCase())
+		spell.spell.toLowerCase().includes(valueText.toLowerCase())
 	); */
 
 	function handleChangeTextFn(e: React.ChangeEvent<HTMLInputElement>) {
@@ -42,13 +45,19 @@ export function Spells() {
 				onChange={(e) => handleChangeTextFn(e)}
 			></InputSearchDefault>
 			{filteredSpells && (
-				<div className="">
-					{filteredSpells.map((element) => (
-						<div className="" key={element.fullName}>
-							{element.fullName}
-						</div>
-					))}
-				</div>
+				<BoxListItens>
+					<div className={styles.containerList}>
+						{filteredSpells.map((element) => (
+							<div
+								className={styles.listItem}
+								key={element.spell}
+							>
+								<p>{element.spell}</p>
+								<p>{element.use}</p>
+							</div>
+						))}
+					</div>
+				</BoxListItens>
 			)}
 		</Container>
 	);

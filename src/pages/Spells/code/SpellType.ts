@@ -1,3 +1,4 @@
 export type SpellType = {
-	fullName: string;
+	spell: string;
+	use: string;
 };
