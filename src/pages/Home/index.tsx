@@ -24,6 +24,7 @@ export function Home() {
 					<li>useState</li>
 					<li>useContext</li>
 					<li>useEffect</li>
+					<li>useMemu</li>
 				</ul>
 
 				<p>
