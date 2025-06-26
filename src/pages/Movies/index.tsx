@@ -1,15 +1,18 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Container } from "../../components/Container";
-import { Heading } from "../../components/Heading";
-import { InputSearchDefault } from "../../components/InputSearchDefault";
 import { SetMovie } from "./SetMovie";
+import type { Movie } from "./code/types";
 
 import { searchMovie } from "./code/script";
 
-import styles from "./styles.module.css";
-import type { Movie } from "./code/types";
 import { SetAllMovies } from "./SetAllMovies";
-import { BoxListItens } from "../../components/BoxListItens";
+import { MoviesSearchBar } from "./MoviesSearchBar";
+import { MoviesFeedbackMessage } from "./MoviesFeedbackMessage";
+
+Movies.SetAllMovies = SetAllMovies;
+Movies.SetEspecificMovie = SetMovie;
+Movies.SearchBar = MoviesSearchBar;
+Movies.FeedBackMessage = MoviesFeedbackMessage;
 
 export function Movies() {
 	const [wantedMovie, setWantedMovie] = useState<Movie | null>(null);
@@ -18,7 +21,7 @@ export function Movies() {
 
 	const [dontShow, setDontShow] = useState(false);
 
-	let id = "94055b36-c4dd-4ae5-aede-dd6b6e67e107";
+	/* let id = "94055b36-c4dd-4ae5-aede-dd6b6e67e107"; */
 
 	const idInputElement = "idInputElement";
 
@@ -59,40 +62,30 @@ export function Movies() {
 
 	return (
 		<div>
-			<Container>
-				<div className={styles.research}>
-					<InputSearchDefault
-						idInputElement={idInputElement}
-						placeholder="Informe o id do filme"
-						type="text"
-					/>
-					<button onClick={handleClick}>Pesquisar</button>
-				</div>
-			</Container>
+			<Movies.SearchBar
+				idInputElement={idInputElement}
+				onSearchHandler={handleClick}
+			/>
 			<Container>
 				{dontShow ? (
-					<>
-						<p>Você não digitou nenhum filme válido</p>
-						<p>
-							Você pode ver todos os filmes ao deixar o campo
-							vazio
-						</p>
-					</>
+					<Movies.FeedBackMessage
+						titleMessage="Você não digitou nenhum filme válido"
+						tipMessage="Você pode ver todos os filmes ao deixar o campo
+							vazio"
+					/>
 				) : wantedMovie ? (
-					<SetMovie wantedMovie={wantedMovie} />
+					<Movies.SetEspecificMovie wantedMovie={wantedMovie} />
 				) : showAll ? (
-					<SetAllMovies
+					<Movies.SetAllMovies
 						allMovies={allMoviesData}
 						onSelectMovie={handleSelectMovie}
 					/>
 				) : (
-					<BoxListItens>
-						<p>Nesta seção você pode ver os filmes feitos</p>
-						<p>
-							Em caso de não digitar nada você ver a lista de
-							todos os filmes
-						</p>
-					</BoxListItens>
+					<Movies.FeedBackMessage
+						titleMessage="Nesta seção você pode ver os filmes feitos"
+						tipMessage="Em caso de não digitar nada você ver a lista de
+							todos os filmes"
+					/>
 				)}
 			</Container>
 		</div>

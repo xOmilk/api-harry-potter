@@ -10,6 +10,7 @@ type SetAllMoviesProps = {
 export function SetAllMovies({ allMovies, onSelectMovie }: SetAllMoviesProps) {
 	return (
 		<div className={styles.container}>
+			{/* <Movies.FeedbackMessage></Movies.FeedbackMessage> */}
 			<p>Por não digitar nada, foi retornado todos os filmes</p>
 			<p><u>Clique</u> em algum filme para selecionar</p>
 			<div className={styles.listOfMovies}>
