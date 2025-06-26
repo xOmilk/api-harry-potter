@@ -1,11 +1,11 @@
 import { useEffect, useMemo, useState } from "react";
 import { Container } from "../../components/Container";
 import { InputSearchDefault } from "../../components/InputSearchDefault";
-import type { SpellType } from "./code/SpellType";
-import { getSpells } from "./code/apiRequest";
+import type { SpellType, SpellTypeWithUrl } from "./code/SpellType";
+import { getSpells, getSpellsWithImages } from "./code/apiRequest";
 
 import styles from "./style.module.css";
-import { BoxListItens } from "../../components/BoxListItens";
+import { SetAllSpells } from "./SetAllSpells";
 
 export function Spells() {
 	const [valueText, setValueText] = useState("");
@@ -14,7 +14,7 @@ export function Spells() {
 
 	useEffect(() => {
 		const collectData = async () => {
-			const response: SpellType[] = await getSpells();
+			const response = await getSpells();
 			setAllSpells(response);
 		};
 		collectData();
@@ -44,21 +44,9 @@ export function Spells() {
 				value={valueText}
 				onChange={(e) => handleChangeTextFn(e)}
 			></InputSearchDefault>
-			{filteredSpells && (
-				<BoxListItens>
-					<div className={styles.containerList}>
-						{filteredSpells.map((element) => (
-							<div
-								className={styles.listItem}
-								key={element.spell}
-							>
-								<p>{element.spell}</p>
-								<p>{element.use}</p>
-							</div>
-						))}
-					</div>
-				</BoxListItens>
-			)}
+
+			{/* Adicionar elemento dentro de um contexto */}
+			{filteredSpells && <SetAllSpells filteredSpells={filteredSpells} />}
 		</Container>
 	);
 }
