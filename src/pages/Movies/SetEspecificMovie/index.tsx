@@ -1,5 +1,4 @@
-import { type Movie } from "./code/types";
-
+import type { Movie } from "../code/MoviesTypes";
 import syles from "./styles.module.css";
 
 type SetMovieProps = {
@@ -14,7 +13,7 @@ function getYoutubeEmbed(url: string) {
 	return `https://www.youtube.com/embed/${videoId}`;
 }
 
-export function SetMovie({ wantedMovie }: SetMovieProps) {
+export function SetEspecificMovie({ wantedMovie }: SetMovieProps) {
 	return (
 		<section className={syles.content}>
 			<div className={syles.img}>

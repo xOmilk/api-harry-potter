@@ -1,11 +1,11 @@
-import { BoxListItens } from "../../components/BoxListItens";
+import { BoxListItens } from "../../../components/BoxListItens";
 
 type MoviesFeedbackMessageProps = {
 	titleMessage: string;
 	tipMessage?: string;
 };
 
-export function MoviesFeedbackMessage({
+export function FeedbackMessage({
 	titleMessage,
 	tipMessage,
 }: MoviesFeedbackMessageProps) {

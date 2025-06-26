@@ -1,6 +1,5 @@
-import { Container } from "../../components/Container";
-import { InputSearchDefault } from "../../components/InputSearchDefault";
-
+import { Container } from "../../../components/Container";
+import { InputSearchDefault } from "../../../components/InputSearchDefault";
 import styles from "./styles.module.css";
 
 type MoviesSearchBarProps = {
@@ -8,7 +7,7 @@ type MoviesSearchBarProps = {
 	onSearchHandler: () => void;
 };
 
-export function MoviesSearchBar({
+export function SearchBar({
 	idInputElement,
 	onSearchHandler,
 }: MoviesSearchBarProps) {

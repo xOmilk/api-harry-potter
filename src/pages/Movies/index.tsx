@@ -1,29 +1,27 @@
 import { useState } from "react";
+
+import { searchMovie } from "./code/apiRequest";
+import type { Movie } from "./code/MoviesTypes";
+
 import { Container } from "../../components/Container";
-import { SetMovie } from "./SetMovie";
-import type { Movie } from "./code/types";
-
-import { searchMovie } from "./code/script";
-
+import { SetEspecificMovie } from "./SetEspecificMovie";
 import { SetAllMovies } from "./SetAllMovies";
-import { MoviesSearchBar } from "./MoviesSearchBar";
-import { MoviesFeedbackMessage } from "./MoviesFeedbackMessage";
+import { SearchBar } from "./SearchBar";
+import { FeedbackMessage } from "./FeedbackMessage";
 
 Movies.SetAllMovies = SetAllMovies;
-Movies.SetEspecificMovie = SetMovie;
-Movies.SearchBar = MoviesSearchBar;
-Movies.FeedBackMessage = MoviesFeedbackMessage;
+Movies.SetEspecificMovie = SetEspecificMovie;
+Movies.SearchBar = SearchBar;
+Movies.FeedBackMessage = FeedbackMessage;
 
 export function Movies() {
 	const [wantedMovie, setWantedMovie] = useState<Movie | null>(null);
 	const [allMoviesData, setAllMoviesData] = useState<Movie[]>([]);
 	const [showAll, setShowAll] = useState(false);
-
 	const [dontShow, setDontShow] = useState(false);
-
-	/* let id = "94055b36-c4dd-4ae5-aede-dd6b6e67e107"; */
-
+	
 	const idInputElement = "idInputElement";
+	/* let id = "94055b36-c4dd-4ae5-aede-dd6b6e67e107"; */
 
 	async function handleClick() {
 		const input = document.getElementById(

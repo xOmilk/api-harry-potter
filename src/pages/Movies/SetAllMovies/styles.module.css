@@ -24,9 +24,6 @@
 	& h3 {
 		font-weight: bold;
 	}
-
-	& p {
-	}
 }
 
 .movie {
@@ -40,9 +37,6 @@
 	border-radius: 8px;
 
 	gap: 10px;
-
-	& p {
-	}
 
 	&:hover {
 		cursor: pointer;

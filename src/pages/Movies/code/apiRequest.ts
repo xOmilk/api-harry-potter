@@ -1,4 +1,4 @@
-import { type Movie, type MoviesResponse, type MovieResponse } from "./types";
+import { type Movie, type MoviesResponse, type MovieResponse } from "./MoviesTypes";
 
 const API_URL = "https://api.potterdb.com/v1/movies";
 
