@@ -10,7 +10,7 @@ const noopSetAllMoviesData: React.Dispatch<
 const noopSetShowAll: React.Dispatch<React.SetStateAction<boolean>> = () => {};
 const noopSetDontShow: React.Dispatch<React.SetStateAction<boolean>> = () => {};
 
-export const initialMovieState: MovieStatesModel = {
+export const movieContextDefaultValue: MovieStatesModel = {
 	wantedMovie: {
 		value: null,
 		setWantedMovie: noopSetWantedMovie,
