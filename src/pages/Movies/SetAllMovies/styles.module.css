@@ -2,6 +2,7 @@
 	width: 100%;
 	display: flex;
 	flex-flow: column;
+	gap: 0rem;
 	& p {
 		text-align: center;
 	}

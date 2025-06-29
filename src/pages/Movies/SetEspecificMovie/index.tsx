@@ -1,10 +1,5 @@
-import type { Movie } from "../code/MoviesTypes";
+import { useMovieContext } from "../../../contexts/MovieContext/useMovieContext";
 import syles from "./styles.module.css";
-
-type SetMovieProps = {
-	wantedMovie: Movie;
-};
-
 function getYoutubeEmbed(url: string) {
 	// Remove possíveis barras no final
 	const cleanUrl = url.trim().replace(/\/+$/, "");
@@ -13,7 +8,14 @@ function getYoutubeEmbed(url: string) {
 	return `https://www.youtube.com/embed/${videoId}`;
 }
 
-export function SetEspecificMovie({ wantedMovie }: SetMovieProps) {
+export function SetEspecificMovie(/* { wantedMovie }: SetMovieProps */) {
+	const {
+		state: {
+			wantedMovie: { value: wantedMovie },
+		},
+	} = useMovieContext();
+	if (!wantedMovie) return;
+
 	return (
 		<section className={syles.content}>
 			<div className={syles.img}>

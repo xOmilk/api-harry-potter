@@ -25,17 +25,3 @@ export async function searchMovie(
 		return await fetchAllMovies();
 	}
 }
-
-async function main() {
-	// Buscar todos os filmes
-	const allMovies = await fetchAllMovies();
-	console.log("Todos os filmes:", allMovies);
-
-	// Buscar um filme específico
-	const movie = await fetchMovieById("94055b36-c4dd-4ae5-aede-dd6b6e67e107");
-	if (movie) {
-		console.log("Filme encontrado:", movie);
-	} else {
-		console.log("Filme não encontrado");
-	}
-}

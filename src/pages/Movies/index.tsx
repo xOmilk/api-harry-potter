@@ -1,91 +1,62 @@
-import { useState } from "react";
-
-import { searchMovie } from "./code/apiRequest";
-import type { Movie } from "./code/MoviesTypes";
-
 import { Container } from "../../components/Container";
 import { SetEspecificMovie } from "./SetEspecificMovie";
 import { SetAllMovies } from "./SetAllMovies";
 import { SearchBar } from "./SearchBar";
 import { FeedbackMessage } from "./FeedbackMessage";
+import { useMovieContext } from "../../contexts/MovieContext/useMovieContext";
+import { MovieContextProvider } from "../../contexts/MovieContext/MovieContextProvider";
 
-Movies.SetAllMovies = SetAllMovies;
-Movies.SetEspecificMovie = SetEspecificMovie;
-Movies.SearchBar = SearchBar;
-Movies.FeedBackMessage = FeedbackMessage;
+import { handleClickMoviesFn } from "../../utils/Movies/handleClickMoviesFn";
 
-export function Movies() {
-	const [wantedMovie, setWantedMovie] = useState<Movie | null>(null);
-	const [allMoviesData, setAllMoviesData] = useState<Movie[]>([]);
-	const [showAll, setShowAll] = useState(false);
-	const [dontShow, setDontShow] = useState(false);
-	
+MoviesComponents.SetAllMovies = SetAllMovies;
+MoviesComponents.SetEspecificMovie = SetEspecificMovie;
+MoviesComponents.SearchBar = SearchBar;
+MoviesComponents.FeedBackMessage = FeedbackMessage;
+
+export function MoviesComponents() {
+	const { state } = useMovieContext();
 	const idInputElement = "idInputElement";
-	/* let id = "94055b36-c4dd-4ae5-aede-dd6b6e67e107"; */
 
-	async function handleClick() {
-		const input = document.getElementById(
-			idInputElement
-		) as HTMLInputElement;
-		const inputValue = input.value;
-
-		const result = await searchMovie(inputValue);
-
-		if (result) {
-			setDontShow(false);
-			if (Array.isArray(result)) {
-				// Seleciona todos os filmes
-
-				setAllMoviesData(result);
-				setShowAll(true);
-				setWantedMovie(null);
-			} else {
-				// Somente um filme
-				console.log("Filme individual", result);
-
-				setWantedMovie(result);
-				setShowAll(false);
-				setAllMoviesData([]);
-			}
-		} else {
-			setDontShow(true);
-			console.log("Filme não encontrado");
+	function renderContent() {
+		if (state.dontShow.value) {
+			return (
+				<MoviesComponents.FeedBackMessage
+					titleMessage="Você não digitou nenhum filme válido"
+					tipMessage="Você pode ver todos os filmes ao deixar o campo vazio"
+				/>
+			);
 		}
-	}
-
-	function handleSelectMovie(movie: Movie) {
-		setWantedMovie(movie);
-		setShowAll(false); // Esconde a lista ao selecionar um filme
+		if (state.wantedMovie.value) {
+			return <MoviesComponents.SetEspecificMovie />;
+		}
+		if (state.showAll.value) {
+			return <MoviesComponents.SetAllMovies />;
+		}
+		return (
+			<MoviesComponents.FeedBackMessage
+				titleMessage="Nesta seção você pode ver os filmes feitos"
+				tipMessage="Em caso de não digitar nada você ver a lista de todos os filmes"
+			/>
+		);
 	}
 
 	return (
 		<div>
-			<Movies.SearchBar
+			<MoviesComponents.SearchBar
 				idInputElement={idInputElement}
-				onSearchHandler={handleClick}
+				onSearchHandler={() =>
+					handleClickMoviesFn(idInputElement, state)
+				}
 			/>
-			<Container>
-				{dontShow ? (
-					<Movies.FeedBackMessage
-						titleMessage="Você não digitou nenhum filme válido"
-						tipMessage="Você pode ver todos os filmes ao deixar o campo
-							vazio"
-					/>
-				) : wantedMovie ? (
-					<Movies.SetEspecificMovie wantedMovie={wantedMovie} />
-				) : showAll ? (
-					<Movies.SetAllMovies
-						allMovies={allMoviesData}
-						onSelectMovie={handleSelectMovie}
-					/>
-				) : (
-					<Movies.FeedBackMessage
-						titleMessage="Nesta seção você pode ver os filmes feitos"
-						tipMessage="Em caso de não digitar nada você ver a lista de
-							todos os filmes"
-					/>
-				)}
-			</Container>
+			<Container>{renderContent()}</Container>
 		</div>
+	);
+}
+
+export function Movies() {
+	return (
+		<MovieContextProvider>
+			<MoviesComponents />
+		</MovieContextProvider>
 	);
 }

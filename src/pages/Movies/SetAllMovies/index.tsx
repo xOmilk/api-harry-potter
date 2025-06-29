@@ -1,24 +1,35 @@
+import { MoviesComponents } from "..";
+import { useMovieContext } from "../../../contexts/MovieContext/useMovieContext";
+import type { MovieStatesModel } from "../../../models/MovieStatesModel";
 import type { Movie } from "../code/MoviesTypes";
 import styles from "./styles.module.css";
 
-type SetAllMoviesProps = {
-	allMovies: Movie[];
-	onSelectMovie: (movie: Movie) => void;
-};
+export function SetAllMovies(/* { allMovies, onSelectMovie }: SetAllMoviesProps */) {
+	const { state } = useMovieContext();
+	const allMovies = state.allMoviesData.value;
 
-export function SetAllMovies({ allMovies, onSelectMovie }: SetAllMoviesProps) {
+	if (allMovies.length === 0) return;
+
+	function handleSelectMovie(movie: Movie, state: MovieStatesModel) {
+		state.wantedMovie.setWantedMovie(movie);
+		state.showAll.setShowAll(false); // Esconde a lista ao selecionar um filme
+
+		console.log(state);
+	}
+
 	return (
 		<div className={styles.container}>
-			{/* <Movies.FeedbackMessage></Movies.FeedbackMessage> */}
-			<p>Por não digitar nada, foi retornado todos os filmes</p>
-			<p>
-				<u>Clique</u> em algum filme para selecionar
-			</p>
+			<MoviesComponents.FeedBackMessage
+				titleMessage="Por não digitar nada, foi retornado todos os filmes"
+				tipMessage={`<u>Clique</u> em algum filme para selecionar`}
+			/>
+			<p></p>
+			<p></p>
 			<div className={styles.listOfMovies}>
 				{allMovies.map((element) => (
 					<div
 						className={styles.movie}
-						onClick={() => onSelectMovie(element)}
+						onClick={() => handleSelectMovie(element, state)}
 					>
 						<img
 							src={element.attributes.poster}
