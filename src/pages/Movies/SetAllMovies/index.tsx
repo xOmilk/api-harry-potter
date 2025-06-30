@@ -21,7 +21,11 @@ export function SetAllMovies(/* { allMovies, onSelectMovie }: SetAllMoviesProps 
 		<div className={styles.container}>
 			<MoviesComponents.FeedBackMessage
 				titleMessage="Por não digitar nada, foi retornado todos os filmes"
-				tipMessage={`<u>Clique</u> em algum filme para selecionar`}
+				tipMessage={
+					<span>
+						<u>Clique</u> em algum filme para ver detalhes
+					</span>
+				}
 			/>
 			<p></p>
 			<p></p>

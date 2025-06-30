@@ -2,8 +2,8 @@ import { BoxListItens } from "../../../components/BoxListItens";
 
 type MoviesFeedbackMessageProps = {
 	titleMessage: string;
-	tipMessage?: string;
-};
+	tipMessage?: React.ReactNode;
+} & React.ComponentProps<"div">;
 
 export function FeedbackMessage({
 	titleMessage,
