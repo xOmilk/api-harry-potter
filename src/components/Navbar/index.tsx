@@ -3,35 +3,39 @@ import { Link } from "react-router-dom";
 import styles from "./styles.module.css";
 import { Theme } from "../Theme";
 import { AiFillHome } from "react-icons/ai";
-import { FaFilm, FaPalette, FaUserFriends } from "react-icons/fa";
+import { FaFilm, FaUserFriends } from "react-icons/fa";
 import { GiMagicSwirl } from "react-icons/gi";
 
 export function Navbar() {
 	return (
-		<nav>
-			<ul className={styles.list}>
+		<nav className={styles.listContainer}>
+			<ul className={styles.ulList}>
 				<li className={styles.item}>
 					<Link to="/">
-						<AiFillHome /> Home
+						<AiFillHome />
+						<p>Home</p>
 					</Link>
 				</li>
 				<li className={styles.item}>
 					<Link to="/movies">
-						<FaFilm /> Filmes
+						<FaFilm />
+						<p>Filmes</p>
 					</Link>
 				</li>
 				<li className={styles.item}>
 					<Link to="/characters">
-						<FaUserFriends /> Personagens
+						<FaUserFriends />
+						<p>Personagens</p>
 					</Link>
 				</li>
 				<li className={styles.item}>
 					<Link to="/spells">
-						<GiMagicSwirl /> Feitiços
+						<GiMagicSwirl />
+						<p>Feitiços</p>
 					</Link>
 				</li>
 				<li className={styles.item}>
-					<FaPalette /> {/* ou <Theme /> se for seu botão de tema */}
+					<Theme />
 				</li>
 			</ul>
 		</nav>

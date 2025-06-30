@@ -5,4 +5,8 @@
 	--golden: #ffe066;
 	--background-item: rgba(30, 30, 30, 0.85);
 	--box-shadow: 0 2px 16px rgba(0, 0, 0, 0.2);
+
+	--background-blue: linear-gradient(90deg, #1a1a2e 0%, #16213e 100%);
+
+	--background-navbar-item: rgba(255, 255, 255, 0.08);
 }
