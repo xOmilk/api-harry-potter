@@ -40,6 +40,8 @@
 }
 
 .item svg {
+	height: 32px;
+	width: 32px;
 	font-size: 2rem;
 	color: #ffd700;
 	transition: color 0.2s;

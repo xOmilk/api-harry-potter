@@ -1,31 +1,27 @@
-import { PaletteIcon } from "lucide-react";
-import type { ThemeType } from "../../contexts/ThemeContext/ThemeContext";
+import { MoonIcon, SunIcon } from "lucide-react";
 import { useThemeContext } from "../../contexts/ThemeContext/useThemeContext";
-import { DropdownMenu } from "./DropdownMenu";
-import { useState } from "react";
+import { handleClickAndToggleTheme } from "../../utils/Theme/handleClickAndToggleTheme";
 
-function handleClickAndToggleTheme(
-	value: ThemeType,
-	setTheme: React.Dispatch<React.SetStateAction<ThemeType>>
-) {}
+const nextThemeIcon = {
+	classic: <SunIcon />,
+	light: <MoonIcon />,
+};
 
 export function Theme() {
-	const { value: actualState, setTheme: setActualTheme } = useThemeContext();
-	const [showDropdown, setShowDropdown] = useState(false);
+	const {
+		value: { type: actualState },
+		setTheme: setActualTheme,
+	} = useThemeContext();
 
 	return (
 		<div
-			/* onClick={() =>
+			onClick={() =>
 				handleClickAndToggleTheme(actualState, setActualTheme)
-			} */
-			onFocus={() => setShowDropdown(true)}
-			onBlur={() => setShowDropdown(false)}
-			tabIndex={0}
-			title={`Tema atual: ${actualState.type}`}
+			}
+			title={`Tema atual: ${actualState}`}
 		>
-			<PaletteIcon />
-			<p>Tema</p>
-			{showDropdown === true && <DropdownMenu />}
+			{nextThemeIcon[actualState]}
+			{<p>Mudar Tema</p>}
 		</div>
 	);
 }

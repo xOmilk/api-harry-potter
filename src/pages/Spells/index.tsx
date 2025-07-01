@@ -43,6 +43,7 @@ export function Spells() {
 				idInputElement="spellSearch"
 				value={valueText}
 				onChange={(e) => handleChangeTextFn(e)}
+				placeholder="Digite um feitiço"
 			></InputSearchDefault>
 
 			{/* Adicionar elemento dentro de um contexto */}

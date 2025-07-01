@@ -1,6 +1,6 @@
-import { createContext, useContext } from "react";
+import { createContext } from "react";
 
-type TypesOfThemes = "light" | "dark" | "classic";
+export type TypesOfThemes = "light" | "classic";
 export type ThemeType = {
 	type: TypesOfThemes;
 };
