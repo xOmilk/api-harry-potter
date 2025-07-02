@@ -1,31 +1,28 @@
 .content {
+	background: var(--background-item);
 	height: fit-content;
+	box-shadow: var(--box-shadow);
+	border-radius: 1rem;
 }
-div.img {
+img {
 	height: inherit;
 	float: left;
 	position: relative;
 	top: inherit;
 	float: left;
 	overflow: hidden;
-}
-div.img img {
 	width: 300px;
-	height: 450px;
+	height: 430px;
 	border-radius: 16px;
 	transition: transform 0.2s;
-	width: 300px;
-	height: 450px;
 }
-div.img img:hover {
+img:hover {
 	transform: scale(1.03);
 }
 .content .resume {
-	background: rgba(30, 30, 30, 0.85);
 	padding: 32px 32px 24px 32px;
 	border-radius: 16px;
 	max-width: 800px;
-	box-shadow: 0 2px 16px rgba(0, 0, 0, 0.2);
 }
 
 .content .resume h3 {
@@ -57,4 +54,32 @@ div.img img:hover {
 	border: none;
 	overflow: hidden;
 	display: block;
+}
+@media (max-width: 850px) {
+	.content {
+		width: 90%;
+	}
+}
+
+@media (max-width: 600px) {
+	.content {
+		width: 80%;
+		display: flex;
+		flex-flow: column;
+		justify-content: center;
+		align-items: center;
+		transition: all 0.3s;
+	}
+
+	.content img {
+		display: block;
+		text-align: center;
+		margin-top: 1rem;
+	}
+	.content .resume {
+		padding-top: 0;
+	}
+	.content .resume h3 {
+		text-align: center;
+	}
 }

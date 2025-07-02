@@ -1,4 +1,5 @@
 import { BoxListItens } from "../BoxListItens";
+import styles from './styles.module.css'
 
 type MoviesFeedbackMessageProps = {
 	titleMessage: string;
@@ -10,7 +11,7 @@ export function FeedbackMessage({
 	tipMessage,
 }: MoviesFeedbackMessageProps) {
 	return (
-		<BoxListItens>
+		<BoxListItens className={styles.container}>
 			<h3>{titleMessage}</h3>
 			<p>{tipMessage}</p>
 		</BoxListItens>

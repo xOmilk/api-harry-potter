@@ -2,7 +2,7 @@
 	width: 100%;
 	display: flex;
 	flex-flow: column;
-	gap: 0rem;
+	gap: 1.2rem;
 	& p {
 		text-align: center;
 	}
@@ -44,19 +44,58 @@
 	}
 
 	& img {
-		width: 70px;
-		height: 100px;
+		max-width: 70px;
+		height: auto;
 		border-radius: 10px;
 	}
+	& h3 {
+		min-width: 50%;
+		max-width: 65%;
+	}
 
-	& pre {
+	& p {
+		text-align: justify;
+		font-size: 13px;
+		font-family: Arial;
+		justify-items: auto;
 		padding-left: 5px;
 		padding-right: 5px;
+		margin-left: 10px;
 	}
 
 	&:hover {
 		transform: scale(1.05);
 		background: rgba(0, 0, 0, 0.2);
 		border: 1.5px solid #ffd43b;
+	}
+}
+
+@media (max-width: 835px) {
+	.listOfMovies {
+		width: 100%;
+		margin: auto auto;
+	}
+	.listOfMovies .movie {
+		width: 95%;
+	}
+}
+
+@media (max-width: 500px) {
+	.listOfMovies {
+		gap: 2rem;
+		width: 80%;
+	}
+
+	.listOfMovies .movie {
+		padding: 1rem;
+		background-color: var(--background-navbar-item);
+		border-radius: 1rem;
+		flex-flow: column wrap;
+		justify-content: center;
+		align-items: center;
+	}
+	.listOfMovies .movie img {
+		max-width: 90px;
+		height: auto;
 	}
 }

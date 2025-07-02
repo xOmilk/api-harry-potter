@@ -27,8 +27,6 @@ export function SetAllMovies(/* { allMovies, onSelectMovie }: SetAllMoviesProps 
 					</span>
 				}
 			/>
-			<p></p>
-			<p></p>
 			<div className={styles.listOfMovies}>
 				{allMovies.map((element) => (
 					<div
@@ -41,7 +39,7 @@ export function SetAllMovies(/* { allMovies, onSelectMovie }: SetAllMoviesProps 
 							title="Poster Imagem"
 						/>
 						<h3>{element.attributes.title}</h3>
-						<pre>{element.id}</pre>
+						<p>{element.id}</p>
 					</div>
 				))}
 			</div>

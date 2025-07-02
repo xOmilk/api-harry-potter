@@ -18,9 +18,11 @@ export function SetEspecificMovie(/* { wantedMovie }: SetMovieProps */) {
 
 	return (
 		<section className={syles.content}>
-			<div className={syles.img}>
-				<img src={wantedMovie.attributes.poster} alt="" />
-			</div>
+			<img
+				className={syles.img}
+				src={wantedMovie.attributes.poster}
+				alt=""
+			/>
 
 			<div className={syles.resume}>
 				<h3>{wantedMovie.attributes.title}</h3>
