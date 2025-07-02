@@ -62,7 +62,7 @@
 
 	.research input {
 		flex: 65%;
-		width: 65% !important;
+		width: 65%;
 		text-indent: 0;
 	}
 	.research button {
@@ -73,10 +73,16 @@
 @media (max-width: 460px) {
 	.research {
 		display: flex;
+		flex-flow: column;
 		justify-content: center;
 		align-items: center;
 		gap: 1rem;
 		flex-direction: column;
-		width: 100%;
+		width: 100% !important;
+	}
+	.research input {
+		flex: none !important; /* <-- Adicione esta linha */
+		width: 80% !important;
+		text-indent: 0;
 	}
 }
