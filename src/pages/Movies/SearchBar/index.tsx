@@ -1,6 +1,5 @@
 import { Container } from "../../../components/Container";
-import { InputSearchDefault } from "../../../components/InputSearchDefault";
-import styles from "./styles.module.css";
+import { SearchDefault } from "../../../components/SearchDefault";
 
 type MoviesSearchBarProps = {
 	idInputElement: string;
@@ -13,14 +12,17 @@ export function SearchBar({
 }: MoviesSearchBarProps) {
 	return (
 		<Container>
-			<div className={styles.research}>
-				<InputSearchDefault
+			<SearchDefault>
+				<SearchDefault.Input
 					idInputElement={idInputElement}
 					placeholder="Informe o id do filme"
 					type="text"
 				/>
-				<button onClick={onSearchHandler}>Pesquisar</button>
-			</div>
+				<SearchDefault.Button
+					textButton="Pesquisar"
+					onClickHandler={onSearchHandler}
+				/>
+			</SearchDefault>
 		</Container>
 	);
 }

@@ -2,7 +2,7 @@ import { Container } from "../../components/Container";
 import { SetEspecificMovie } from "./SetEspecificMovie";
 import { SetAllMovies } from "./SetAllMovies";
 import { SearchBar } from "./SearchBar";
-import { FeedbackMessage } from "./FeedbackMessage";
+import { FeedbackMessage } from "../../components/FeedbackMessage";
 import { useMovieContext } from "../../contexts/MovieContext/useMovieContext";
 import { MovieContextProvider } from "../../contexts/MovieContext/MovieContextProvider";
 

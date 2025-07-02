@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { Container } from "../../components/Container";
-import { InputSearchDefault } from "../../components/InputSearchDefault";
+import { SearchDefault } from "../../components/SearchDefault";
 import type { SpellType, SpellTypeWithUrl } from "./code/SpellType";
 import { getSpells, getSpellsWithImages } from "./code/apiRequest";
 
@@ -39,12 +39,14 @@ export function Spells() {
 
 	return (
 		<Container>
-			<InputSearchDefault
-				idInputElement="spellSearch"
-				value={valueText}
-				onChange={(e) => handleChangeTextFn(e)}
-				placeholder="Digite um feitiço"
-			></InputSearchDefault>
+			<SearchDefault>
+				<SearchDefault.Input
+					idInputElement="spellSearch"
+					placeholder="Digite um feitiço"
+					value={valueText}
+					onChange={(e) => handleChangeTextFn(e)}
+				/>
+			</SearchDefault>
 
 			{/* Adicionar elemento dentro de um contexto */}
 			{filteredSpells && <SetAllSpells filteredSpells={filteredSpells} />}
