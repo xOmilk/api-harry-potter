@@ -40,7 +40,7 @@
 	font-weight: bold;
 	letter-spacing: 1px;
 
-	transition: all 0.3s;
+	transition: background 0.3s, transform 0.3s, font-weight 0s;
 }
 
 .research button:hover {
@@ -48,4 +48,10 @@
 	transform: scale(1.05);
 	background: linear-gradient(90deg, #ffd43b 60%, #ffe066 100%);
 	box-shadow: 0 4px 24px rgba(0, 0, 0, 0.18);
+}
+
+@media (max-width: 950px) {
+	.research input {
+		width: 80%;
+	}
 }
