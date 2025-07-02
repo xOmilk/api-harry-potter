@@ -8,17 +8,13 @@ import { ThemeContextProvider } from "../../contexts/ThemeContext/ThemeContextPr
 import "../../styles/theme.css";
 import "../../styles/globals.css";
 
-import styles from "./styles.module.css";
-
 export function DefaultLayout() {
 	return (
 		<ThemeContextProvider>
 			<div className="app-container">
 				<Navbar />
 				<main className="main-content">
-					<Heading>
-						<h1 className={styles.title}>Harry Potter Wiki</h1>
-					</Heading>
+					<Heading>Harry Potter Wiki</Heading>
 
 					<Outlet />
 				</main>

@@ -3,8 +3,8 @@ import styles from "./styles.module.css";
 export function Footer() {
 	return (
 		<footer className={styles.footer}>
-			<a href="https://github.com/xOmilk/api-harry-potter" target="_blank">
-				Feito por
+			<a href="https://github.com/xOmilk/potter-wiki" target="_blank">
+				Documentação
 			</a>
 			<p>
 				&copy;

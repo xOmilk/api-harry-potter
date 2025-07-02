@@ -1,12 +1,16 @@
 .research {
+	display: flex;
+	flex-flow: row;
 	margin: auto auto;
+	gap: 10px;
 	margin-top: 30px;
 	margin-bottom: 30px;
 	color: black !important;
-	display: inline-block;
 }
 .research input {
-	width: 800px;
+	flex: 70%;
+	width: 750px;
+	max-width: 800px;
 	height: 70px;
 	border-radius: 12px;
 	top: 500px;
@@ -19,7 +23,6 @@
 	box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
 	transition: border-color 0.3s, box-shadow 0.3s, background 0.3s;
 	outline: none;
-	margin-right: 10px;
 }
 .research input:focus {
 	border-color: #ffd43b;
@@ -28,10 +31,12 @@
 }
 
 .research button {
+	flex: 30%;
+	max-width: 150px;
+	height: 70px;
 	border-radius: 12px;
 	padding: 20px;
 	font-size: 20px;
-	height: 70px;
 	background: linear-gradient(90deg, #ffe066 60%, #ffd43b 100%);
 	color: #2d2613;
 	border: none;
@@ -51,7 +56,27 @@
 }
 
 @media (max-width: 950px) {
+	.research {
+		width: 90% !important;
+	}
+
 	.research input {
-		width: 80%;
+		flex: 65%;
+		width: 65% !important;
+		text-indent: 0;
+	}
+	.research button {
+		padding: 1rem;
+		flex: 30%;
+	}
+}
+@media (max-width: 460px) {
+	.research {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		gap: 1rem;
+		flex-direction: column;
+		width: 100%;
 	}
 }

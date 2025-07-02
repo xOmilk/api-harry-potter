@@ -4,7 +4,7 @@ import styles from "./styles.module.css";
 export function Home() {
 	return (
 		<Container>
-			<div className={styles.content}>
+			<section className={styles.content}>
 				<div className={styles.top}>
 					<h2>Seja bem vindo a Harry Potter Wiki</h2>
 					<h3>
@@ -50,7 +50,9 @@ export function Home() {
 						</span>
 					</li>
 				</ul>
+			</section>
 
+			<section className={styles.content}>
 				<p>
 					Foram utilizadas algumas APIs para construção do conteudo
 					desse site dentre elas:
@@ -83,7 +85,7 @@ export function Home() {
 					</a>{" "}
 					ou pelo rodapé presente em todas as páginas
 				</p>
-			</div>
+			</section>
 		</Container>
 	);
 }
