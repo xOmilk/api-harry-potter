@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
-import { InputSearchDefault } from "../../components/InputSearchDefault";
+import { SearchDefault } from "../../components/SearchDefault";
+import { Container } from "../../components/Container";
 
 import type { CharacterType } from "./code/CharacterType";
-import { SetAllCharacters } from "./SetAllCharacters";
 import { searchEspecificCharacter } from "./code/characters";
-import { Container } from "../../components/Container";
-import { Heading } from "../../components/Heading";
+import { SetAllCharacters } from "./SetAllCharacters";
 import { SetEspecificCharacter } from "./SetEspecifCharacter";
 
 export function Characters() {
@@ -61,12 +60,14 @@ export function Characters() {
 
 	return (
 		<Container>
-			<InputSearchDefault
-				placeholder="Digite um personagem"
-				idInputElement="inputCharacter"
-				onChange={onChangeInput}
-				value={searchValue}
-			/>
+			<SearchDefault>
+				<SearchDefault.Input
+					placeholder="Digite um personagem"
+					idInputElement="SearchCharacter"
+					value={searchValue}
+					onChange={onChangeInput}
+				/>
+			</SearchDefault>
 
 			{!showOnlyOneCharacter &&
 				characters &&
