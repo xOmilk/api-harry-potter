@@ -7,7 +7,9 @@ export async function fetchCharacters(): Promise<CharacterType> {
 	return data;
 }
 
-export async function searchEspecificCharacter(name: string) {
+export async function searchEspecificCharacter(
+	name: string
+): Promise<CharacterType | CharacterType[]> {
 	const urlData = await fetch(
 		`https://potterapi-fedeperin.vercel.app/pt/characters?search=${name}`
 	);
