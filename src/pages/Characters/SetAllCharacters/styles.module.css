@@ -1,8 +1,6 @@
 .listOfCharacters {
 	margin: auto auto;
-	margin-top: 2rem;
 	width: 100%;
-	width: 500px;
 	display: flex;
 	flex-flow: column;
 	justify-content: center;
@@ -18,9 +16,8 @@
 
 .character {
 	margin: auto auto;
-	margin: 0 3rem;
 	width: 100%;
-	max-width: 350px;
+	padding: 0.5rem;
 	display: flex;
 	flex-flow: row;
 	align-items: left;
@@ -49,7 +46,7 @@
 
 	& img {
 		width: 70px;
-		height: 100px;
+		height: auto;
 		border-radius: 10px;
 	}
 
@@ -57,5 +54,50 @@
 		transform: scale(1.05);
 		background: rgba(0, 0, 0, 0.2);
 		border: 1.5px solid #ffd43b;
+	}
+}
+
+@media (max-width: 590px) {
+	.container {
+		margin: 0;
+		width: 90%;
+	}
+	.listOfCharacters {
+		margin: 0;
+		padding: 0;
+	}
+
+	.character {
+		width: 100%;
+	}
+
+	img {
+		width: 64px;
+	}
+}
+
+@media (max-width: 500px) {
+	.listOfCharacters {
+		gap: 2rem;
+		width: 80%;
+	}
+
+	.listOfCharacters .character {
+		padding: 1rem;
+		background-color: var(--background-navbar-item);
+		border-radius: 1rem;
+		flex-flow: column wrap;
+		justify-content: center;
+		align-items: center;
+	}
+	.listOfCharacters .character .info {
+		display: flex;
+		flex-flow: wrap;
+		justify-content: center;
+		align-items: center;
+	}
+	.listOfCharacters .character img {
+		max-width: 90px;
+		height: auto;
 	}
 }

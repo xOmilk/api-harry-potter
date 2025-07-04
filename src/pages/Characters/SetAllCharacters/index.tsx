@@ -1,30 +1,34 @@
 import { BoxListItens } from "../../../components/BoxListItens";
+import { useCharacterContext } from "../../../contexts/CharacterContext/useCharacterContext";
 import type { CharacterType } from "../code/CharacterType";
 
 import styles from "./styles.module.css";
 
-type SetAllCharactersProps = {
-	Characters: CharacterType[];
-	setChoosedCharacter: (character: CharacterType) => void;
-	setShowOnlyOneCharacter: (boolean: boolean) => void;
+type SetAllCharacterProps = {
+	filteredCharacters: CharacterType[];
 };
 
 export function SetAllCharacters({
-	Characters,
-	setChoosedCharacter,
-	setShowOnlyOneCharacter,
-}: SetAllCharactersProps) {
+	filteredCharacters: allCharacters,
+}: SetAllCharacterProps) {
+	const { especificCharacter } = useCharacterContext();
+	const { showAllCharacters } = useCharacterContext();
+
+	if (!allCharacters) return;
+
 	return (
-		<BoxListItens>
-			<div className={styles.listOfCharacters}>
-				{Characters.length !== 0 ? (
-					Characters.map((character) => (
+		<BoxListItens className={styles.container}>
+			<section className={styles.listOfCharacters}>
+				{allCharacters.length !== 0 &&
+					allCharacters.map((character) => (
 						<div
 							key={character.index}
 							className={styles.character}
 							onClick={() => {
-								setShowOnlyOneCharacter(true);
-								setChoosedCharacter(character);
+								showAllCharacters.setShowAllCharacters(false);
+								especificCharacter.setEspecificCharacter(
+									character
+								);
 							}}
 						>
 							<img src={character.image} alt="" />
@@ -36,11 +40,11 @@ export function SetAllCharacters({
 								</p>
 							</div>
 						</div>
-					))
-				) : (
+					))}
+				{allCharacters.length === 0 && (
 					<p>Você não digitou nenhum personagem valido.</p>
 				)}
-			</div>
+			</section>
 		</BoxListItens>
 	);
 }

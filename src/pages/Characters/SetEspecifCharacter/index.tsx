@@ -1,30 +1,44 @@
-import type { CharacterType } from "../code/CharacterType";
+import { FeedbackMessage } from "../../../components/FeedbackMessage";
+import { useCharacterContext } from "../../../contexts/CharacterContext/useCharacterContext";
 
 import styles from "./style.module.css";
 
-type SetEspecificCharacterProps = {
-	character: CharacterType;
-};
+export function SetEspecificCharacter() {
+	const { especificCharacter } = useCharacterContext();
+	const { showAllCharacters } = useCharacterContext();
+	if (showAllCharacters.value) {
+		return (
+			<FeedbackMessage
+				titleMessage="Por não digitar nada, foi mostrado todos os personagens"
+				tipMessage="Digite algum personagem para pesquisar"
+			/>
+		);
+	}
 
-export function SetEspecificCharacter({
-	character,
-}: SetEspecificCharacterProps) {
 	return (
-		<div className={styles.content}>
-			<div className={styles.img}>
-				<img
-					src={character.image}
-					alt={`Imagem do ator ${character.interpretedBy} em harry potter`}
-					title={`Imagem do ator ${character.interpretedBy} em harry potter`}
-				/>
-			</div>
+		<section className={styles.content}>
 			<div className={styles.resume}>
-				<h3>{character.fullName}</h3>
-				<p>Apelido: {character.nickname}</p>
-				<p>Data de nascimento: {character.birthdate}</p>
-				<p>Interpretado por: {character.interpretedBy}</p>
-				<p>Casa pertencente: {character.hogwartsHouse}</p>
+				<img
+					src={especificCharacter.value.image}
+					alt={`Imagem do ator ${especificCharacter.value.interpretedBy} em harry potter`}
+					title={`Imagem do ator ${especificCharacter.value.interpretedBy} em harry potter`}
+				/>
+				<div className={styles.info}>
+					<h3>{especificCharacter.value.fullName}</h3>
+					<p>Apelido: {especificCharacter.value.nickname}</p>
+					<p>
+						Data de nascimento: {especificCharacter.value.birthdate}
+					</p>
+					<p>
+						Interpretado por:{" "}
+						{especificCharacter.value.interpretedBy}
+					</p>
+					<p>
+						Casa pertencente:{" "}
+						{especificCharacter.value.hogwartsHouse}
+					</p>
+				</div>
 			</div>
-		</div>
+		</section>
 	);
 }
