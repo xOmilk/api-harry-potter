@@ -3,9 +3,8 @@ import {
 	CharacterContext,
 	type CharacterContextType,
 } from "./CharacterContext";
-import { useCharacterContext } from "./useCharacterContext";
 import type { CharacterType } from "../../pages/Characters/code/CharacterType";
-import { fetchCharacters, searchEspecificCharacter } from "../../pages/Characters/code/characters";
+import { searchEspecificCharacter } from "../../pages/Characters/code/characters";
 
 type CharacterContextProviderProps = {
 	children: React.ReactNode;
@@ -13,36 +12,51 @@ type CharacterContextProviderProps = {
 export function CharacterContextProvider({
 	children,
 }: CharacterContextProviderProps) {
-	const [allCharacterState, setallCharacterState] = useState<CharacterType[]>(
-		async () => {
-			const response = await searchEspecificCharacter('');
-			return response;
+	const [allCharacterState, setAllCharacterState] = useState<CharacterType[]>(
+		[]
+	);
+
+	const [showAllCharacters, setShowAllCharacters] = useState<boolean>(true);
+
+	const [especificCharacter, setEspecificCharacter] = useState<CharacterType>(
+		{
+			fullName: "",
+			nickname: "",
+			hogwartsHouse: "",
+			image: "",
+			interpretedBy: "",
+			birthdate: "",
+			index: 0,
 		}
 	);
-	const { allCharacters } = useCharacterContext();
-
-	const [especificCharacter, setEspecificCharacter] = useState({
-		fullName: "",
-		nickname: "",
-		hogwartsHouse: "",
-		image: "",
-		interpretedBy: "",
-		birthdate: "",
-		index: 0,
-	});
-
-	useEffect(() => {
-		console.log("Pesquisa de todos os characters");
-		console.log(allCharacters);
-	}, []);
 
 	const CharacterStateValue: CharacterContextType = {
-		allCharacters: allCharacterState,
+		allCharacters: {
+			value: allCharacterState,
+			setAllCharacters: setAllCharacterState,
+		},
 		especificCharacter: {
 			value: especificCharacter,
 			setEspecificCharacter,
 		},
+		showAllCharacters: {
+			value: showAllCharacters,
+			setShowAllCharacters,
+		},
 	};
+
+	useEffect(() => {
+		async function fetchAllCharacters() {
+			const response = await searchEspecificCharacter("");
+
+			if (Array.isArray(response)) {
+				setAllCharacterState([...response]);
+			} else {
+				setAllCharacterState([response]);
+			}
+		}
+		fetchAllCharacters();
+	}, []);
 
 	return (
 		<CharacterContext.Provider value={CharacterStateValue}>

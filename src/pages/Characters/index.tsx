@@ -1,62 +1,33 @@
-import { useEffect, useState } from "react";
+import { useMemo, useState } from "react";
 import { SearchDefault } from "../../components/SearchDefault";
 import { Container } from "../../components/Container";
-
-import type { CharacterType } from "./code/CharacterType";
-import { searchEspecificCharacter } from "./code/characters";
 import { SetAllCharacters } from "./SetAllCharacters";
 import { SetEspecificCharacter } from "./SetEspecifCharacter";
+import { useCharacterContext } from "../../contexts/CharacterContext/useCharacterContext";
+import { CharacterContextProvider } from "../../contexts/CharacterContext/CharacterContextProvider";
 
-export function Characters() {
+CharactersComponents.SetAllCharacters = SetAllCharacters;
+CharactersComponents.SetEspecificCharacter = SetEspecificCharacter;
+
+function CharactersComponents() {
 	const [searchValue, setSearchValue] = useState("");
 
-	const [characters, setCharacters] = useState<CharacterType[]>();
+	const { showAllCharacters } = useCharacterContext();
+	const { allCharacters } = useCharacterContext();
 
-	const [choosedCharacter, setChoosedCharacter] =
-		useState<CharacterType | null>(null);
-
-	const [showOnlyOneCharacter, setShowOnlyOneCharacter] =
-		useState<boolean>(false);
-
-	async function onChangeInput(e: React.ChangeEvent<HTMLInputElement>) {
+	function onChangeInput(e: React.ChangeEvent<HTMLInputElement>) {
 		const text = e.target.value;
 		setSearchValue(text);
-		const movie = await searchEspecificCharacter(searchValue);
-		setCharacters(movie);
+		showAllCharacters.setShowAllCharacters(true);
 	}
 
-	function fnChooseCharacter(character: CharacterType) {
-		setChoosedCharacter(character);
-	}
-
-	useEffect(() => {
-		async function loadCharacters() {
-			//Carregar todos os personagens em caso nao digitar nada
-			if (searchValue.trim() === "") {
-				setCharacters(await searchEspecificCharacter(""));
-				return;
-			}
-
-			if (searchValue.length > 0 || searchValue === "") {
-				setShowOnlyOneCharacter(false);
-			}
-
-			const result = await searchEspecificCharacter(searchValue);
-
-			if (result) {
-				setCharacters(Array.isArray(result) ? result : [result]);
-			} else {
-				setCharacters([]);
-			}
-		}
-
-		const delayAfterStopTyping = 500;
-		const timerId = setTimeout(() => {
-			loadCharacters();
-		}, delayAfterStopTyping);
-
-		return () => clearTimeout(timerId);
-	}, [searchValue]);
+	const filteredCharacters = useMemo(() => {
+		return allCharacters.value.filter((character) => {
+			return character.fullName
+				.toLowerCase()
+				.includes(searchValue.toLowerCase());
+		});
+	}, [allCharacters.value, searchValue]);
 
 	return (
 		<Container>
@@ -69,19 +40,22 @@ export function Characters() {
 				/>
 			</SearchDefault>
 
-			{!showOnlyOneCharacter &&
-				characters &&
-				Array.isArray(characters) && (
-					<SetAllCharacters
-						Characters={characters}
-						setChoosedCharacter={fnChooseCharacter}
-						setShowOnlyOneCharacter={setShowOnlyOneCharacter}
-					/>
-				)}
-
-			{showOnlyOneCharacter && choosedCharacter !== null && (
-				<SetEspecificCharacter character={choosedCharacter} />
+			{showAllCharacters.value && (
+				<CharactersComponents.SetAllCharacters
+					filteredCharacters={filteredCharacters}
+				/>
+			)}
+			{!showAllCharacters.value && (
+				<CharactersComponents.SetEspecificCharacter />
 			)}
 		</Container>
+	);
+}
+
+export function Characters() {
+	return (
+		<CharacterContextProvider>
+			<CharactersComponents />
+		</CharacterContextProvider>
 	);
 }
