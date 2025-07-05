@@ -1,0 +1,6 @@
+.info {
+	border-radius: 1rem;
+	padding: 1rem;
+	background: var(--background-blue);
+	box-shadow: var(--box-shadow);
+}
